@@ -4,7 +4,7 @@ import re
 from pathlib import Path
 
 import numpy as np
-from sentence_transformers import SentenceTransformer
+
 from google import genai
 
 
@@ -31,6 +31,7 @@ def load_project_data():
         _embeddings = np.load(
             DATA_DIR / "sarkari_sathi_embeddings_combined.npy"
         )
+        from sentence_transformers import SentenceTransformer
 
         _embedding_model = SentenceTransformer(
             "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
