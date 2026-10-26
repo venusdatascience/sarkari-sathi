@@ -33,3 +33,5 @@ processed_text/*
 !processed_text/sarkari_sathi_metadata_combined.json
 !processed_text/sarkari_sathi_embeddings_combined.npy
 assistant/*.bak
+
+sarkari_project/settings_before_render.py
