@@ -1,0 +1,5 @@
+﻿Django==6.1.2
+numpy==2.5.1
+sentence-transformers==6.2.0
+google-genai==2.33.0
+gunicorn

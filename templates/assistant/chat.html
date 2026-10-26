@@ -1,0 +1,317 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarkari Sathi | सरकारी साथी</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: Arial, "Noto Sans Devanagari", sans-serif;
+            background: #f1f5f9;
+            color: #172033;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #102a43;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        .brand { font-size: 27px; font-weight: bold; }
+        .brand span { color: #55d6c2; }
+
+        .tag {
+            margin-top: 5px;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        main {
+            width: min(900px, 94%);
+            margin: 30px auto;
+        }
+
+        .welcome, .panel, .result {
+            background: white;
+            padding: 25px;
+            margin-bottom: 22px;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(20, 40, 70, 0.07);
+        }
+
+        .pill {
+            display: inline-block;
+            background: #dff8f2;
+            color: #087f8c;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        h1 { font-size: 30px; line-height: 1.35; margin-bottom: 10px; }
+        .subtitle, .help { color: #536579; }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin: 18px 0 7px;
+        }
+
+        select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font: inherit;
+            background: white;
+        }
+
+        textarea { min-height: 120px; resize: vertical; }
+
+        button {
+            margin-top: 18px;
+            background: #087f8c;
+            color: white;
+            border: none;
+            padding: 13px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover { background: #066873; }
+
+        .new-chat {
+            display: inline-block;
+            margin: 0 0 18px;
+            background: #102a43;
+            text-decoration: none;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .help { font-size: 14px; }
+
+        .error {
+            background: #fff1f2;
+            border: 1px solid #fecdd3;
+            color: #9f1239;
+            padding: 14px;
+            border-radius: 8px;
+        }
+
+        .message {
+            padding: 18px;
+            border-radius: 12px;
+            margin-top: 18px;
+            overflow-wrap: anywhere;
+        }
+
+        .user-message { background: #eaf2ff; }
+        .assistant-message { background: #ffffff; border: 1px solid #e1e8f0; }
+
+        .message-label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #087f8c;
+        }
+
+        .answer-text { line-height: 1.8; overflow-wrap: anywhere; }
+        .answer-text h1, .answer-text h2, .answer-text h3 {
+            color: #102a43;
+            line-height: 1.4;
+            margin-top: 20px;
+        }
+
+        .answer-text h1 { font-size: 25px; }
+        .answer-text h2 { font-size: 22px; }
+        .answer-text h3 { font-size: 19px; }
+        .answer-text p { margin: 10px 0; }
+        .answer-text ul, .answer-text ol { padding-left: 25px; }
+        .answer-text li { margin-bottom: 8px; }
+
+        .answer-text blockquote {
+            border-left: 4px solid #087f8c;
+            padding-left: 15px;
+            color: #536579;
+            margin-left: 0;
+        }
+
+        .evidence {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 12px;
+            border: 1px solid #e1e8f0;
+        }
+
+        .evidence summary {
+            cursor: pointer;
+            font-weight: bold;
+            color: #087f8c;
+            line-height: 1.7;
+        }
+
+        .evidence p {
+            white-space: pre-wrap;
+            line-height: 1.7;
+            overflow-wrap: anywhere;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #536579;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            .welcome, .panel, .result { padding: 18px; }
+            h1 { font-size: 25px; }
+            .brand { font-size: 22px; }
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <div class="brand">SARKARI <span>SATHI</span> | सरकारी साथी</div>
+    <div class="tag">NEPAL GOVERNMENT DOCUMENT INTELLIGENCE</div>
+</header>
+
+<main>
+    <section class="welcome">
+        <div class="pill">AI-POWERED DOCUMENT ASSISTANT</div>
+        <h1>Government Report Assistant<br>सरकारी प्रतिवेदन सहायक</h1>
+
+        <p class="subtitle">
+            Ask questions in English or Nepali about Nepal's government audit reports.
+            <br>
+            नेपालको सरकारी लेखापरीक्षण प्रतिवेदनबारे नेपाली वा अंग्रेजीमा प्रश्न सोध्नुहोस्।
+        </p>
+    </section>
+
+    <section class="panel">
+        {% if chat_history %}
+        <a class="new-chat" href="?new_chat=1">＋ New Chat / नयाँ कुराकानी</a>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+
+            <label for="language">Answer language / उत्तरको भाषा</label>
+            <select id="language" name="language">
+                <option value="ne" {% if request.POST.language == "ne" or not request.POST.language %}selected{% endif %}>नेपाली</option>
+                <option value="en" {% if request.POST.language == "en" %}selected{% endif %}>English</option>
+            </select>
+
+            <label for="question">Your question / तपाईंको प्रश्न</label>
+            <textarea
+                id="question"
+                name="question"
+                placeholder="Ask about the government audit report...&#10;सरकारी प्रतिवेदनबारे प्रश्न सोध्नुहोस्..."
+                required
+            ></textarea>
+
+            <button type="submit">Ask Sarkari Sathi / प्रश्न सोध्नुहोस् →</button>
+
+            <p class="help">
+                Answers use retrieved evidence from the government report and include PDF page references.
+                <br>
+                उत्तर सरकारी प्रतिवेदनबाट प्राप्त प्रमाणमा आधारित हुन्छन् र PDF पृष्ठ नम्बर समावेश गर्छन्।
+            </p>
+        </form>
+    </section>
+
+    {% if error %}
+    <section class="result">
+        <div class="error">{{ error }}</div>
+    </section>
+    {% endif %}
+
+    {% if chat_history %}
+    <section class="result">
+        <h2>Conversation / कुराकानी</h2>
+
+        {% for item in chat_history %}
+        <article class="message user-message">
+            <div class="message-label">You / तपाईं</div>
+            <div>{{ item.question }}</div>
+        </article>
+
+        <article class="message assistant-message">
+            <div class="message-label">Sarkari Sathi / सरकारी साथी</div>
+
+            <div class="answer-text answer-content">{{ item.answer }}</div>
+            {{ item.answer|json_script:"answer-json-"|default:"" }}
+
+            {% if item.evidence %}
+            <details class="evidence">
+                <summary>Retrieved Evidence / प्राप्त प्रमाण ({{ item.evidence|length }} passages)</summary>
+
+                <p class="help">
+                    Open a passage to inspect its source text and PDF page number.
+                    <br>
+                    प्रमाणको मूल पाठ र PDF पृष्ठ नम्बर हेर्न खोल्नुहोस्।
+                </p>
+
+                {% for passage in item.evidence %}
+                <details class="evidence">
+                    <summary>
+                        PDF page / PDF पृष्ठ
+                        {% if passage.page %}
+                            {{ passage.page }}
+                        {% elif passage.page_number %}
+                            {{ passage.page_number }}
+                        {% elif passage.page_num %}
+                            {{ passage.page_num }}
+                        {% else %}
+                            {{ forloop.counter }}
+                        {% endif %}
+                    </summary>
+                    <p>{% if passage.text %}{{ passage.text }}{% elif passage.content %}{{ passage.content }}{% else %}{{ passage }}{% endif %}</p>
+                </details>
+                {% endfor %}
+            </details>
+            {% endif %}
+        </article>
+        {% endfor %}
+    </section>
+    {% endif %}
+</main>
+
+<footer>
+    Sarkari Sathi · सरकारी साथी · Nepal Government Document Intelligence
+</footer>
+
+<script>
+document.querySelectorAll(".answer-content").forEach(function (element) {
+    const rawAnswer = element.textContent;
+
+    if (window.marked && window.DOMPurify) {
+        const html = marked.parse(rawAnswer, {
+            breaks: true,
+            gfm: true
+        });
+
+        element.innerHTML = DOMPurify.sanitize(html);
+    }
+});
+</script>
+
+</body>
+</html>

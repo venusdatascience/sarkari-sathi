@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+
+# Virtual environments
+venv/
+.venv/
+env/
+# Secrets
+.env
+.env.*
+!.env.example
+# Django local files
+db.sqlite3
+*.log
+staticfiles/
+media/
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+# AI service backups
+assistant/ai_service_backup*.py
+assistant/ai_service_before_*.py
+# Government source PDFs
+*.pdf
+report_extracted.txt
+processed_text/page_*.txt
+!processed_text/
+processed_text/*
+!processed_text/sarkari_sathi_metadata_combined.json
+!processed_text/sarkari_sathi_embeddings_combined.npy
+assistant/*.bak
